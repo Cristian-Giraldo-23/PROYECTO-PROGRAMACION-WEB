@@ -1,10 +1,12 @@
-const jwt = require('jsonwebtoken'); //Se importa jwt con jsonwebtoken, permite encriptar contraseñas (Autenticaciones)
-const bcrypt = require('bcryptjs'); //Es necesario para las incursiones del password
-const dontev = require('dontev'); //Para las variables de entorno
-const User = require('../models/user.model'); //Se importa el modelo user
-const RolePermission = require('../models/rolePermission.model'); //Se importa el modelo rolepermission
+const jwt = require('jsonwebtoken');//importar libreria jsonweb token para generar token
+const bcrypt = require('bcrypt');//importar libreria bcrypt para encriptar contraseñas
+const dotenv = require('dotenv');
+const User = require('../models/user.model');//importar los modelos de usuario y roles
+const RolePermissions = require('../models/role_permissions.models');//importar los modelos de usuario y roles
 
-dontev.config();
+dotenv.config();
+
+console.log(process.env.JWT_SECRET); // Esto debería imprimir la clave secreta de tu archivo .env
 
 const SECRET_KEY = process.env.JWT_SECRET; //Obtener la clave secreta desde las variables de entorno
 
@@ -27,7 +29,7 @@ exports.loginUser = async (email, password) => { //El servicio que se va a llama
         }
 
         //Consultar los permisos de rol
-        const rolePermissions = await RolePermission.findAll({
+        const rolePermissions = await RolePermissions.findAll({
             where: { rol_id: user.rol_id }, //Revisa los permisos si es usuario o administrador
             attributes: ['permiso_id']
         });

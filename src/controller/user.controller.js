@@ -1,4 +1,5 @@
 const userService = require('../services/user.services');
+const User = require('../models/user.model');
 
 exports.createUser = async (req, res) => {
     try {

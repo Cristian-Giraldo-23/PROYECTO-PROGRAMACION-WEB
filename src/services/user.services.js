@@ -1,9 +1,9 @@
 const User = require('../models/user.model');
-const bcrypt = require('bcrypt.js');
+const bcrypt = require('bcrypt');
 
 exports.createUser = async (nombre, email, password, rol_id, administrador_id) => {
     try {
-        const userExists = await User.finOne({ where: { email } });
+        const userExists = await User.findOne({ where: { email } });
         if(userExists) {
             throw new Error('El usuario ya existe');
         }
@@ -40,7 +40,7 @@ exports.getAllUsersByAdministradorId = async (administrador_id, email) => {
         }
         
         //Se usa una consulta con el modelo user y excluye el password para mantener la seguridad
-        const users = await User.findAll({ where: WhereClause, attrtbutes: { exclude: ['password'] }});
+        const users = await User.findAll({ where: WhereClause, attributes: { exclude: ['password'] }});
         return users;
     } 
 

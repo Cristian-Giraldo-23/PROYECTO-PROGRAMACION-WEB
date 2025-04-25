@@ -3,7 +3,7 @@ const sequelize = require('../config/db');
 const User = require('./user.model');
 
 const Project = sequelize.define('proyectos', {
-    id: { type: DataTypes.INTEGER, primarykey:true, autoIncrement: true},
+    id: { type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true},
     nombre: { type:DataTypes.STRING, allowNull: false },
     descripcion: { type: DataTypes.STRING, allowNull: false},
     fecha_creacion: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
@@ -11,7 +11,7 @@ const Project = sequelize.define('proyectos', {
         type: DataTypes.INTEGER,
         allowNull: false,     
         references: { model: User, key: 'id' },
-        onDelete: 'CASACADE'
+        onDelete: 'CASCADE'
     },
 }, {
     timestamps: false,
