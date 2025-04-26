@@ -1,5 +1,5 @@
 const Project = require('../models/project.model');
-const User = require('../models/user.model'); // Asegúrate de que este modelo exista
+const User = require('../models/user.model');
 
 exports.createProject = async (data) => {
     try {

@@ -77,7 +77,6 @@ exports.deleteProject = async (req, res) => {
 exports.assignUserToProjects = async (req, res) => {
     let { project_id, user_id } = req.body;
 
-    // Asegura que user_id sea un array
     if (!Array.isArray(user_id)) {
         user_id = [user_id];
     }
