@@ -40,7 +40,7 @@ exports.getAllUsersByRolId = async (req, res) => {
         // Consulta usuarios por el ID de rol recibido como parámetro
         const users = await userService.getAllUsersByRolId(req.params.id);
 
-        req.status(200).json({ message: 'Usuarios consultados con éxito', users });
+        res.status(200).json({ message: 'Usuarios consultados con éxito', users });
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener los usuarios', error });
     }
